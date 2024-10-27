@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Advertising</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function execute() {
+				parent.{startPrefix}Start();
+			}
+			function start() {
+				// TODO test safari/khtml
+				if (/Chrome\//.test(navigator.userAgent)) {
+					setTimeout( "execute()", 200 );
+				} else {
+					parent.{startPrefix}Start();
+				}
+			}
+
+			if ( window.addEventListener ) {
+				window.addEventListener( 'load', start, false );
+			} else if ( window.attachEvent ) {
+				window.attachEvent( 'onload', start );
+			}
+		</script>
+	</body>
+</html>

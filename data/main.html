@@ -1,0 +1,64 @@
+<script type="text/javascript">
+	var {functionPrefix}IsLoaded = 0;
+	function {functionPrefix}OnLoad() {
+		{functionPrefix}IsLoaded = 1;
+		setTimeout( "{functionPrefix}Run()", 300 );
+	}
+
+	function {functionPrefix}Run() {
+		var el = document.getElementById( '{messageDiv}' );
+		if ( el.style.display != 'none' ) {
+			{modeCode}
+		}
+
+	}
+
+	function {functionPrefix}Content() {
+		var el = document.getElementById( '{messageDiv}' );
+		if ( el ) {
+			el.style.display = 'none';
+		}
+
+		var els = new Array();
+		if ( document.getElementsByClassName ) {
+			els = document.getElementsByClassName( "{contentClass}" );
+		} else {
+			var tmp = document.getElementsByTagName('*') || document.all;
+			for ( var i = 0; i < tmp.length; i++ ) {
+				if ( tmp[i].className = '{contentClass}' ) {
+					els.push( tmp[i] );
+				}
+			}
+		}
+		for( var i = 0; i < els.length; i++ ) {
+			els[i].style.visibility = 'visible';
+		}
+	}
+
+	function {startPrefix}Start() {
+		if (/Opera\//.test(navigator.userAgent)) {
+			setTimeout( "{functionPrefix}Content()", 300 );
+			return;
+		}
+		if ( {functionPrefix}IsLoaded ) {
+			{functionPrefix}Content();
+		} else {
+			if ( window.addEventListener ) {
+				window.addEventListener( 'load', {functionPrefix}Content, false );
+			} else if ( window.attachEvent ) {
+				window.attachEvent( 'onload', {functionPrefix}Content );
+			}
+		}
+	}
+
+	if ( window.addEventListener ) {
+		window.addEventListener( 'load', {functionPrefix}OnLoad, false );
+	} else if ( window.attachEvent ) {
+		window.attachEvent( 'onload', {functionPrefix}OnLoad );
+	}
+</script>
+<noscript>
+	This page requires JavaScript.
+</noscript>
+<div id="{messageDiv}">
+</div>
